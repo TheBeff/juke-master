@@ -48,9 +48,19 @@ app.controller('PlayCtrl', function($scope, $http, $log){
 
 	$scope.playAudio = function(song){
 		$scope.audio.src = "/api/songs/" + song.id + "/audio";
-		audio.play()
+		audio.play();
 		song.nowPlaying = true;
 		$scope.currentSong = song;
+	};
+
+	$scope.resumeAudio = function(){
+		$scope.currentSong.nowPlaying = true;
+		audio.play();
+	};
+
+	$scope.pauseAudio = function(){
+		$scope.currentSong.nowPlaying = false;
+		audio.pause();
 	};
 });
 

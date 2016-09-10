@@ -6,7 +6,7 @@
     <link href="/bootstrap-dark.css" rel="stylesheet" />
     <link href="/style.css" rel="stylesheet" />
   </head>
-  <body ng-app='app'>
+  <body ng-app='app' ng-controller="PlayCtrl">
     <div id="main" class="container-fluid" ng-controller="MainCtrl">
       <div class="col-xs-2">
         <sidebar>
@@ -20,7 +20,7 @@
         </sidebar>
       </div>
 
-      <div class="col-xs-10" ng-controller="PlayCtrl"> 
+      <div class="col-xs-10"> 
         <div class="album">
           <p>
             <h3>{{album.name}}</h3>
@@ -52,13 +52,14 @@
       </div>
 
       <footer>
-        <div>
+        <div ng-show="currentSong">
           <div class="pull-left">
             <button class="btn btn-default">
               <span class="glyphicon glyphicon-step-backward"></span>
             </button>
             <button class="btn btn-default">
-              <span class="glyphicon glyphicon-pause"></span>
+              <span class="glyphicon glyphicon-pause" ng-click="pauseAudio()" ng-show="currentSong.nowPlaying"></span>
+              <span class="glyphicon glyphicon-play" ng-click="resumeAudio()" ng-hide="currentSong.nowPlaying"></span>
             </button>
             <button class="btn btn-default">
               <span class="glyphicon glyphicon-step-forward"></span>
